@@ -1,21 +1,21 @@
 const candidates = [
   'Arlington Heights',
-  // 'Brookfield',
-  // 'Clarendon Hills',
-  // 'Des Plaines',
-  // 'Downers Grove',
+  'Brookfield',
+  'Clarendon Hills',
+  'Des Plaines',
+  'Downers Grove',
   'Elmhurst',
-  // 'Evanston',
-  // 'Glen Ellyn',
+  'Evanston',
+  'Glen Ellyn',
   'Glencoe',
-  // 'La Grange',
-  // 'Morton Grove',
-  // 'Mount Prospect',
-  // 'Naperville',
-  // 'Palatine',
-  // 'Park Ridge',
-  // 'Riverside',
-  // 'Westmont',
+  'La Grange',
+  'Morton Grove',
+  'Mount Prospect',
+  'Naperville',
+  'Palatine',
+  'Park Ridge',
+  'Riverside',
+  'Westmont',
 ];
 
 const scores = new Map(candidates.map(c => [c, 0]));
@@ -27,16 +27,21 @@ for (let a = 0; a < candidates.length; a++) {
     builder.push(Immutable.Set([candidates[a], candidates[b]]));
   }
 }
-const matchups = Immutable.Set(builder);
+const matchups = Immutable.Set(builder).toArray();
 
-for (const matchup of matchups) {
+for (let i = 0; i < matchups.length; i++) {
+  const matchup = matchups[i];
   const array = matchup.toArray();
   const candidateA = array[0];
   const candidateB = array[1];
 
   document.body.innerHTML = `
+      <p>
+        (${i+1} of ${matchups.length})
+        <br /> <progress value="${i+1}" max="${matchups.length}"></progress>
+      </p>
       <h1>
-        [A] ${candidateA}
+        <br />[A] ${candidateA}
         <br /> --or --
         <br /> [B] ${candidateB}
       </h1>
