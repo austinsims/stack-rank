@@ -60,7 +60,7 @@ for (let i = 0; i < matchups.length; i++) {
       break;
     default:
       alert(`expected 'a' or 'b' but got ${resp}`);
-      b = b - 1;
+      i--;
   }
 }
 
